@@ -13,7 +13,7 @@ HTML5 CSS3 JavaScript Vanilla ES6+ localStorage Netlify
 
 ### Objectif
 Projet réalisé en 48h pour prouver ma maîtrise de JavaScript Vanilla.
-*Je cherche un stage développeur front-end à Abidjan pour octobre 2025.*
+*Je cherche un stage développeur web à Abidjan pour octobre 2025.*
 
 ### Contact
 📧 morienpola@gmail.com
