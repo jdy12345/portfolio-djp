@@ -1,6 +1,6 @@
 # To-Do List V4.2 - Projet du 27-09-2025 🕊️
 
-*🚀 Démo Live* → [djp-27-09-2025.netlify.app](https://djp-27-09-2025.netlify.app)
+*🚀 Démo Live* → [[djp-27-09-2025.netlify.app](https://djp-27-09-2025.netlify.app)](https://portefeuille-djp.netlify.app/)
 
 ### Stack Technique
 HTML5 CSS3 JavaScript Vanilla ES6+ localStorage Netlify
