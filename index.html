@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJP - Développeur Web Abidjan</title>
+  <title>DJP | Développeur Web Abidjan | Portfolio</title>
+  <meta name="description" content="Portfolio de DJP, développeur web à Abidjan. HTML, CSS, JavaScript. Projets, compétences et contact.">
+  <link rel="icon" type="image/png" href="/favicon.png">
   <style>
     :root {
       --bg-gradient: linear-gradient(to right, #ff7e5f, #2a9d8f);
@@ -12,7 +14,7 @@
       --input-bg: rgba(255, 255, 255, 0.2);
     }
 
-.dark-mode {
+   .dark-mode {
       --bg-gradient: linear-gradient(to right, #1e1e1e, #2d3748);
       --card-bg: rgba(0,0,0,0.3);
       --text-color: #e2e8f0;
@@ -36,9 +38,14 @@
     }
 
     h1 {
-      font-size: clamp(20px, 6vw, 36px);
-      margin-bottom: 15px;
+      font-size: clamp(24px, 7vw, 42px);
+      margin-bottom: 10px;
       line-height: 1.3;
+    }
+
+    h2 {
+      font-size: clamp(18px, 5vw, 28px);
+      margin-bottom: 15px;
     }
 
     p {
@@ -47,6 +54,7 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      line-height: 1.6;
     }
 
     img {
@@ -60,7 +68,7 @@
       object-fit: cover;
     }
 
-.btn-whatsapp {
+   .btn-whatsapp {
       display: inline-block;
       background: #25D366;
       color: white;
@@ -72,12 +80,12 @@
       transition: 0.3s;
     }
 
-.btn-whatsapp:hover {
+   .btn-whatsapp:hover {
       transform: scale(1.05);
       box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-.theme-toggle {
+   .theme-toggle {
       position: fixed;
       top: 20px;
       right: 20px;
@@ -92,8 +100,21 @@
       z-index: 1000;
     }
 
+   .points-forts {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+   .point {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
     /* === TO-DO LIST V4.2 === */
-.input-section {
+   .input-section {
       display: flex;
       gap: 10px;
       margin-bottom: 15px;
@@ -118,7 +139,7 @@
       color: rgba(255, 255, 255, 0.7);
     }
 
-.btn-todo {
+   .btn-todo {
       padding: 12px 24px;
       font-size: 16px;
       font-weight: bold;
@@ -130,7 +151,7 @@
       transition: all 0.3s;
     }
 
-.btn-todo:hover {
+   .btn-todo:hover {
       transform: translateY(-2px);
     }
 
@@ -141,7 +162,6 @@
       margin-top: 15px;
     }
 
-    /* === EXPORT V4.2 === */
     #btnExporter {
       background: #3498db;
       color: white;
@@ -150,13 +170,12 @@
       margin-left: 4%;
     }
 
-.actions-bottom {
+   .actions-bottom {
       display: flex;
       justify-content: space-between;
     }
-    /* === FIN EXPORT V4.2 === */
 
-.stats-container {
+   .stats-container {
       background: rgba(0,0,0,0.2);
       padding: 15px;
       border-radius: 8px;
@@ -164,13 +183,13 @@
       text-align: left;
     }
 
-.stats-texte {
+   .stats-texte {
       font-size: 14px;
       margin-bottom: 8px;
       font-weight: bold;
     }
 
-.progress-bar-bg {
+   .progress-bar-bg {
       width: 100%;
       height: 8px;
       background: rgba(255,255,255,0.2);
@@ -178,7 +197,7 @@
       overflow: hidden;
     }
 
-.progress-bar-fill {
+   .progress-bar-fill {
       height: 100%;
       background: #25D366;
       width: 0%;
@@ -186,14 +205,14 @@
       border-radius: 4px;
     }
 
-.filtres-container {
+   .filtres-container {
       display: flex;
       gap: 8px;
       margin-bottom: 15px;
       flex-wrap: wrap;
     }
 
-.btn-filtre {
+   .btn-filtre {
       flex: 1;
       min-width: 70px;
       padding: 8px 12px;
@@ -207,17 +226,17 @@
       transition: all 0.2s;
     }
 
-.btn-filtre:hover {
+   .btn-filtre:hover {
       background: rgba(255,255,255,0.2);
     }
 
-.btn-filtre.actif {
+   .btn-filtre.actif {
       background: white;
       color: #ff7e5f;
       border-color: white;
     }
 
-.tache-cachee {
+   .tache-cachee {
       display: none!important;
     }
 
@@ -254,11 +273,11 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
-.tache-info {
+   .tache-info {
       flex: 1;
     }
 
-.tache-categorie {
+   .tache-categorie {
       font-size: 12px;
       padding: 2px 8px;
       border-radius: 12px;
@@ -266,28 +285,28 @@
       color: white;
     }
 
-.cat-perso { background: #9b59b6; border-left-color: #9b59b6!important; }
-.cat-boulot { background: #3498db; border-left-color: #3498db!important; }
-.cat-ifsm { background: #e67e22; border-left-color: #e67e22!important; }
+   .cat-perso { background: #9b59b6; border-left-color: #9b59b6!important; }
+   .cat-boulot { background: #3498db; border-left-color: #3498db!important; }
+   .cat-ifsm { background: #e67e22; border-left-color: #e67e22!important; }
 
-.tache-date {
+   .tache-date {
       font-size: 12px;
       opacity: 0.8;
       display: block;
       margin-top: 4px;
     }
 
-.en-retard {
+   .en-retard {
       color: #ff4444;
       font-weight: bold;
     }
 
-.finie {
+   .finie {
       text-decoration: line-through;
       opacity: 0.5;
     }
 
-.btn-supprimer {
+   .btn-supprimer {
       background: #ff4444;
       color: white;
       padding: 6px 12px;
@@ -298,46 +317,57 @@
     }
     /* === FIN TO-DO V4.2 === */
   </style>
-  <!-- Vercel Web Analytics -->
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="https://cdn.vercel-insights.com/v1/script.js"></script>
 </head>
 <body>
   <button class="theme-toggle" id="themeToggle">🌙</button>
 
-  <h1>Ravi(e) de vous accueillir sur mon site web</h1>
-  <p>Découvrez mes projets, ma passion et mon amour pour l'informatique.</p>
-  <p>Belle visite à vous.</p>
-  <img src="moi.jpg" alt="c'est moi">
+  <!-- HERO NOUVEAU -->
+  <h1>Salut, moi c'est DJP 👋</h1>
+  <p style="font-size: clamp(18px, 4.5vw, 22px); font-weight: 600;">
+    Développeur Web en devenir
+  </p>
+  <p>Je crée des sites modernes, rapides et responsifs avec HTML, CSS & JavaScript</p>
+
+  <img src="moi.jpg" alt="DJP - Développeur Web">
   <br>
   <a href="https://wa.me/2250142048659" class="btn-whatsapp" target="_blank">
     Contactez-moi sur WhatsApp
   </a>
 
+  <div class="points-forts">
+    <div class="point">⚡ Rapide</div>
+    <div class="point">📱 Responsive</div>
+    <div class="point">🚀 Moderne</div>
+  </div>
+
   <!-- A PROPOS -->
   <section style="margin-top: 60px; padding: 25px 20px; background: var(--card-bg); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <h2 style="font-size: clamp(18px, 5vw, 28px); margin-bottom: 15px;">Qui suis-je?</h2>
-    <p style="font-size: 16px; line-height: 1.6;">
-Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, actuellement en 1ère année IDA à IFSM ANGRÉ (Abidjan). Je me forme intensivement sur HTML, CSS et JavaScript pour concevoir des sites modernes, fluides et totalement responsives. Mon objectif? Transformer vos idées en sites web qui claquent et qui font la différence. Toujours prêt à apprendre et à relever de nouveaux défis. Connectons-nous! #DéveloppeurWeb #Abidjan #JavaScript #WebDesign #IFSM </p>
+    <h2>Qui suis-je?</h2>
+    <p style="font-size: 16px;">
+      Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, actuellement en 1ère année IDA à IFSM ANGRÉ, Abidjan.
+      Je me forme intensivement sur HTML, CSS et JavaScript pour concevoir des sites modernes, fluides et totalement responsives.
+      Mon objectif? Transformer vos idées en sites web qui claquent et qui font la différence.
+      Toujours prêt à apprendre et à relever de nouveaux défis. Connectons-nous!
+    </p>
   </section>
 
   <!-- PROJETS -->
   <section style="margin-top: 30px; padding: 25px 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <h2 style="font-size: clamp(18px, 5vw, 28px); margin-bottom: 20px;">Mes projets</h2>
+    <h2>Mes projets</h2>
 
     <div style="background: var(--card-bg); padding: 20px; border-radius: 10px; text-align: left; margin-bottom: 20px;">
       <h3 style="margin-bottom: 8px;">Portfolio DJP</h3>
-      <p style="font-size: 15px; margin-bottom: 12px;">Mon premier site en HTML/CSS, hébergé sur Netlify.</p>
-      <a href="https://github.com/jdy12345/portfolio-djp" target="_blank" style="color: #ffd700; font-weight: bold;">Voir le code source →</a>
+      <p style="font-size: 15px; margin-bottom: 12px;">Mon premier site en HTML/CSS, hébergé sur Vercel.</p>
+      <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+        <a href="https://portfolio-djp.vercel.app/" target="_blank" style="color: #25D366; font-weight: bold;">Voir la Demo →</a>
+        <a href="https://github.com/jdy12345/portfolio-djp" target="_blank" style="color: #ffd700; font-weight: bold;">Code Source →</a>
+      </div>
     </div>
 
     <!-- TO-DO LIST V4.2 -->
     <div style="background: var(--card-bg); padding: 20px; border-radius: 12px; text-align: left;">
       <h3 style="margin-bottom: 15px;">To-Do List V4.2 🚀</h3>
 
-      <!-- STATS V4 -->
       <div class="stats-container">
         <div class="stats-texte" id="statsTexte">0/0 tâches finies</div>
         <div class="progress-bar-bg">
@@ -345,7 +375,6 @@ Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, a
         </div>
       </div>
 
-      <!-- FILTRES V4.1 -->
       <div class="filtres-container">
         <button class="btn-filtre actif" data-filtre="tout">Tout</button>
         <button class="btn-filtre" data-filtre="perso">Perso</button>
@@ -373,11 +402,11 @@ Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, a
 
   <!-- COMPETENCES -->
   <section style="margin-top: 40px; padding: 25px 20px; max-width: 600px; margin-left: auto; margin-right: auto;">
-    <h2 style="font-size: clamp(18px, 5vw, 24px); margin-bottom: 20px;">Mes Compétences</h2>
+    <h2>Mes Compétences</h2>
     <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
-      <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">HTML5</span>
-      <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">CSS3</span>
-      <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">JavaScript</span>
+      <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">HTML5 <small style="opacity:0.7">90%</small></span>
+      <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">CSS3 <small style="opacity:0.7">85%</small></span>
+      <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">JavaScript <small style="opacity:0.7">70%</small></span>
       <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">localStorage</span>
       <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">Drag & Drop API</span>
       <span style="background: var(--card-bg); padding: 8px 16px; border-radius: 20px; font-size: 14px;">GitHub</span>
@@ -387,7 +416,7 @@ Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, a
 
   <!-- CONTACT -->
   <section style="margin: 40px auto; padding: 25px 20px; max-width: 600px; background: var(--card-bg); border-radius: 10px;">
-    <h2 style="font-size: clamp(18px, 5vw, 24px); margin-bottom: 20px;">Me Contacter</h2>
+    <h2>Me Contacter</h2>
     <p style="margin-bottom: 15px;">Tu veux collaborer ou discuter d'un projet?</p>
     <a href="mailto:morienpola@gmail.com" style="display: inline-block; background: #ffd700; color: #0f172a; padding: 12px 24px; border-radius: 8px; font-weight: bold; text-decoration: none;">
       M'envoyer un email
@@ -396,7 +425,7 @@ Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, a
 
   <footer style="margin-top: 50px; padding: 20px; font-size: 14px; opacity: 0.7;">
     ©️ 2026 DJP - Développé à Abidjan 🇨🇮<br>
-   « En hommage à mon Papa, dont les valeurs continuent de me guider chaque jour. » - 27-09-2025 🕊️
+    « En hommage à mon Papa, dont les valeurs continuent de me guider chaque jour. » - 27-09-2025 🕊️
   </footer>
 
   <!-- === SCRIPT V4.2 - EXPORT === -->
@@ -454,7 +483,6 @@ Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, a
       }
     });
 
-    // === FILTRES V4.1 ===
     btnsFiltre.forEach(btn => {
       btn.addEventListener('click', () => {
         btnsFiltre.forEach(b => b.classList.remove('actif'));
@@ -480,7 +508,6 @@ Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, a
       });
     }
 
-    // === EXPORT V4.2 ===
     btnExporter.addEventListener('click', exporterTaches);
 
     function exporterTaches() {
@@ -520,7 +547,6 @@ Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, a
       a.click();
       URL.revokeObjectURL(url);
     }
-    // === FIN EXPORT V4.2 ===
 
     function ajouterTache() {
       const texte = champTache.value.trim();
@@ -675,6 +701,5 @@ Bonjour! Je m'appelle DJIGUEMDE JEAN YVES. Je suis développeur web débutant, a
       }
     }
   </script>
-
 </body>
 </html>
