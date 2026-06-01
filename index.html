@@ -140,494 +140,238 @@
       align-items: center;
       justify-content: center;
     }
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJP | Développeur Web Abidjan | Portfolio</title>
-  <meta name="description" content="Portfolio de DJP, développeur web à Abidjan. HTML, CSS, JavaScript. Projets, compétences et contact.">
-  <link rel="icon" type="image/png" href="/favicon.png">
-  
-  <style>
-    /* 1. VARIABLES DE COULEURS EN MODE CLAIR / SOMBRE */
-    :root {
-      --bg-gradient: linear-gradient(135deg, #ff7e5f, #2a9d8f);
-      --card-bg: rgba(255,255,255,0.15);
-      --text-color: #ffffff;
-      --input-bg: rgba(255, 255, 255, 0.2);
-      --accent-color: #25D366;
+<body>
+
+  <button class="theme-toggle" id="themeToggle">🌙</button>
+
+  <div class="hero-container">
+    <h1>Jean-Yves Djiguemde</h1>
+    <h2>Développeur Web & Mobile</h2>
+    <p class="hero-desc">
+      Passionné par l'univers de la tech, je conçois des solutions digitales modernes, rapides et entièrement adaptées à tous vos écrans.
+    </p>
+
+    <img src="moi.jpg" alt="Jean-Yves Djiguemde - Développeur Web" class="profile-img">
+    <br>
+    <a href="https://wa.me" class="btn-whatsapp" target="_blank">
+      Contactez-moi sur WhatsApp
+    </a>
+
+    <div class="points-forts">
+      <div class="point">⚡ Rapide</div>
+      <div class="point">📱 Responsive</div>
+      <div class="point">🚀 Moderne</div>
+    </div>
+  </div>
+
+  <section style="margin-top: 20px; padding: 30px 25px; background: var(--card-bg); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: left; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
+    <h2 style="margin-bottom: 15px; font-weight: 700;">Qui suis-je ?</h2>
+    <p style="font-size: 15px; line-height: 1.7; margin-bottom: 0;">
+      Bonjour ! Je m'appelle <strong>Jean-Yves Djiguemde</strong>. Actuellement étudiant en 1ère année IDA à l'<strong>IFSM ANGRÉ (Abidjan)</strong>, je me forme de manière intensive sur les technologies clés du web : HTML, CSS et JavaScript. <br><br>
+      Mon objectif est simple : transformer vos concepts et vos idées en interfaces dynamiques, fluides et mémorables. Curieux et rigoureux, je suis toujours prêt à relever de nouveaux défis techniques. Créons ensemble votre projet !
+    </p>
+  </section>
+
+  <section class="todo-section">
+    <h2>Ma To-Do List</h2>
+    <p class="todo-subtitle">Suivez l'avancement de vos tâches quotidiennes en temps réel.</p>
+
+    <div class="stats-container">
+      <div class="stats-texte">Progression des tâches</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="barreProgression"></div>
+      </div>
+    </div>
+
+    <div class="filtres-container">
+      <button class="btn-filtre actif" data-filtre="toutes">Toutes</button>
+      <button class="btn-filtre" data-filtre="perso">Perso</button>
+      <button class="btn-filtre" data-filtre="boulot">Boulot</button>
+      <button class="btn-filtre" data-filtre="ifsm">IFSM</button>
+    </div>
+
+    <div class="input-section">
+      <input type="text" id="champTache" placeholder="Ajouter une nouvelle tâche...">
+      <select id="categorieTache">
+        <option value="perso">Perso</option>
+        <option value="boulot">Boulot</option>
+        <option value="ifsm">IFSM</option>
+      </select>
+      <input type="date" id="dateTache">
+      <button class="btn-todo btn-ajouter" id="btnAjouter">Ajouter</button>
+    </div>
+
+    <ul id="listeTaches"></ul>
+
+    <div class="actions-bottom">
+      <button class="btn-todo" id="toutSupprimer">Tout effacer</button>
+      <button class="btn-todo" id="btnExporter">Exporter JSON</button>
+    </div>
+  </section>
+
+  <section class="projets-section">
+    <h2>Mes Réalisations</h2>
+    <p class="projets-subtitle">Découvrez les applications et outils web que je développe au cours de ma formation.</p>
+
+    <div class="projets-grid">
+      <div class="projet-card">
+        <div>
+          <div class="projet-title">📝 Application To-Do List</div>
+          <p class="projet-desc">
+            Une application de gestion des tâches quotidienne intégrant des filtres par catégorie, une barre de progression en temps réel et une sauvegarde automatique.
+          </p>
+          <div class="projet-techs">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">LocalStorage</span>
+          </div>
+        </div>
+        <a href="#" class="projet-link">Projet Actuel</a>
+      </div>
+
+      <div class="projet-card">
+        <div>
+          <div class="projet-title">🚀 Prochain Projet Pro</div>
+          <p class="projet-desc">
+            Une future application web dynamique ou un projet d'étude en cours de conception pour valider mes compétences en intégration et développement.
+          </p>
+          <div class="projet-techs">
+            <span class="tech-tag">En cours...</span>
+          </div>
+        </div>
+        <a href="#" class="projet-link" style="opacity: 0.5; pointer-events: none;">Bientôt disponible</a>
+      </div>
+    </div>
+  </section>
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+
+    const champTache = document.getElementById('champTache');
+    const categorieTache = document.getElementById('categorieTache');
+    const dateTache = document.getElementById('dateTache');
+    const btnAjouter = document.getElementById('btnAjouter');
+    const listeTaches = document.getElementById('listeTaches');
+    const barreProgression = document.getElementById('barreProgression');
+    const toutSupprimer = document.getElementById('toutSupprimer');
+    const btnExporter = document.getElementById('btnExporter');
+    const boutonsFiltres = document.querySelectorAll('.btn-filtre');
+
+    function sauvegarderTaches() {
+      const taches = [];
+      listeTaches.querySelectorAll('li').forEach(li => {
+        taches.push({
+          texte: li.querySelector('.tache-texte').textContent,
+          categorie: li.querySelector('.tache-categorie').textContent.toLowerCase(),
+          date: li.querySelector('.tache-date').textContent,
+          finie: li.classList.contains('finie')
+        });
+      });
+      localStorage.setItem('djp_taches', JSON.stringify(taches));
     }
 
-    .dark-mode {
-      --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b);
-      --card-bg: rgba(255, 255, 255, 0.05);
-      --text-color: #f8fafc;
-      --input-bg: rgba(0, 0, 0, 0.3);
+    function chargerTaches() {
+      const tachesStockees = localStorage.getItem('djp_taches');
+      if (!tachesStockees) return;
+
+      const taches = JSON.parse(tachesStockees);
+      taches.forEach(tache => {
+        creerElementTache(tache.texte, tache.categorie, tache.date, tache.finie);
+      });
+      majProgression();
     }
 
-    /* 2. REINITIALISATION ET STYLES GENERAUX */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+    function majProgression() {
+      const total = listeTaches.children.length;
+      const finies = listeTaches.querySelectorAll('.finie').length;
+      const pourcentage = total === 0 ? 0 : (finies / total) * 100;
+      barreProgression.style.width = pourcentage + '%';
     }
 
-    body {
-      background: var(--bg-gradient);
-      font-family: 'Segoe UI', Arial, sans-serif;
-      color: var(--text-color);
-      text-align: center;
-      padding: 40px 20px;
-      min-height: 100vh;
-      transition: all 0.3s ease;
+    function creerElementTache(texte, cat, dateVal, estFinie = false) {
+      const li = document.createElement('li');
+      li.className = `cat-${cat}`;
+      if (estFinie) li.classList.add('finie');
+      
+      li.innerHTML = `
+        <div class="tache-info">
+          <span class="tache-categorie">${cat}</span>
+          <span class="tache-texte">${texte}</span>
+          <span class="tache-date">${dateVal}</span>
+        </div>
+        <button class="btn-supprimer">Supprimer</button>
+      `;
+
+      li.querySelector('.tache-info').addEventListener('click', () => {
+        li.classList.toggle('finie');
+        majProgression();
+        sauvegarderTaches();
+      });
+
+      li.querySelector('.btn-supprimer').addEventListener('click', (e) => {
+        e.stopPropagation();
+        li.remove();
+        majProgression();
+        sauvegarderTaches();
+      });
+
+      listeTaches.appendChild(li);
     }
 
-    /* 3. SECTION PRESENTATION PRINCIPALE (HERO) */
-    .hero-container {
-      max-width: 650px;
-      margin: 0 auto;
-    }
+    btnAjouter.addEventListener('click', () => {
+      const texte = champTache.value.trim();
+      const cat = categorieTache.value;
+      const dateVal = dateTache.value ? `📅 ${dateTache.value}` : '📅 Pas de date';
 
-    h1 {
-      font-size: clamp(28px, 6vw, 44px);
-      font-weight: 800;
-      margin-bottom: 8px;
-      letter-spacing: -0.5px;
-    }
+      if (!texte) return alert('Veuillez renseigner le libellé de votre tâche.');
 
-    h2 {
-      font-size: clamp(18px, 4vw, 24px);
-      font-weight: 600;
-      opacity: 0.9;
-      margin-bottom: 20px;
-    }
+      creerElementTache(texte, cat, dateVal);
+      champTache.value = '';
+      
+      majProgression();
+      sauvegarderTaches();
+      document.querySelector('.btn-filtre[data-filtre="toutes"]').click();
+    });
 
-    .hero-desc {
-      font-size: clamp(15px, 3.5vw, 17px);
-      line-height: 1.6;
-      opacity: 0.85;
-      margin-bottom: 30px;
-    }
+    toutSupprimer.addEventListener('click', () => {
+      listeTaches.innerHTML = '';
+      majProgression();
+      localStorage.removeItem('djp_taches');
+    });
 
-    .profile-img {
-      border: 4px solid rgba(255, 255, 255, 0.4);
-      border-radius: 50%;
-      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
-      width: 170px;
-      height: 170px;
-      object-fit: cover;
-      margin-bottom: 25px;
-      transition: transform 0.3s ease;
-    }
-    
-    .profile-img:hover {
-      transform: scale(1.03);
-    }
+    boutonsFiltres.forEach(btn => {
+      btn.addEventListener('click', () => {
+        boutonsFiltres.forEach(b => b.classList.remove('actif'));
+        btn.classList.add('actif');
+        
+        const filtre = btn.getAttribute('data-filtre');
+        listeTaches.querySelectorAll('li').forEach(li => {
+          const catTache = li.className.replace('cat-', '').replace(' finie', '').trim();
+          if (filtre === 'toutes' || catTache === filtre) {
+            li.style.setProperty('display', 'flex', 'important');
+          } else {
+            li.style.setProperty('display', 'none', 'important');
+          }
+        });
+      });
+    });
 
-    .btn-whatsapp {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--accent-color);
-      color: white;
-      padding: 14px 28px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 15px;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-      transition: all 0.3s ease;
-      margin-bottom: 35px;
-    }
+    btnExporter.addEventListener('click', () => {
+      const tachesStockees = localStorage.getItem('djp_taches') || '[]';
+      const blob = new Blob([tachesStockees], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'mes_taches_djp.json';
+      a.click();
+      URL.revokeObjectURL(url);
+    });
 
-    .btn-whatsapp:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-    }
-
-    .points-forts {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 50px;
-      flex-wrap: wrap;
-    }
-
-    .point {
-      font-size: 14px;
-      font-weight: 600;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(5px);
-      padding: 8px 16px;
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-    }
-
-    .theme-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: var(--card-bg);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      font-size: 20px;
-      cursor: pointer;
-      backdrop-filter: blur(10px);
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-        /* 4. DESIGN COMPOSANT TO-DO LIST */
-    .todo-section {
-      margin-top: 40px;
-      padding: 30px 25px;
-      background: var(--card-bg);
-      border-radius: 15px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .todo-section h2 {
-      margin-bottom: 5px;
-      font-weight: 700;
-    }
-
-    .todo-subtitle {
-      font-size: 14px !important;
-      opacity: 0.7;
-      margin-bottom: 25px !important;
-      text-align: left;
-    }
-
-    .input-section {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    #champTache, #categorieTache, #dateTache {
-      padding: 12px;
-      font-size: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 8px;
-      background: var(--input-bg);
-      color: var(--text-color);
-      outline: none;
-      transition: all 0.2s;
-    }
-
-    #champTache:focus, #categorieTache:focus, #dateTache:focus {
-      border-color: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 0 10px rgba(255,255,255,0.05);
-    }
-
-    #champTache {
-      flex: 2;
-      min-width: 200px;
-    }
-
-    #categorieTache, #dateTache {
-      flex: 1;
-      min-width: 120px;
-    }
-
-    #champTache::placeholder {
-      color: rgba(255, 255, 255, 0.5);
-    }
-
-    .btn-todo {
-      padding: 12px 20px;
-      font-size: 14px;
-      font-weight: 700;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    .btn-ajouter {
-      background: white;
-      color: #2a9d8f;
-      flex: 1;
-      min-width: 100px;
-    }
-
-    .btn-ajouter:hover {
-      background: rgba(255,255,255,0.9);
-      transform: translateY(-1px);
-    }
-
-    #toutSupprimer {
-      background: rgba(255, 68, 68, 0.15);
-      color: #ff4444;
-      border: 1px solid rgba(255, 68, 68, 0.3);
-      width: 48%;
-    }
-
-    #toutSupprimer:hover {
-      background: rgba(255, 68, 68, 0.3);
-    }
-
-    #btnExporter {
-      background: rgba(52, 152, 219, 0.15);
-      color: #3498db;
-      border: 1px solid rgba(52, 152, 219, 0.3);
-      width: 48%;
-    }
-
-    #btnExporter:hover {
-      background: rgba(52, 152, 219, 0.3);
-    }
-
-    .actions-bottom {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-
-    .stats-container {
-      background: rgba(0,0,0,0.1);
-      padding: 15px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .stats-texte {
-      font-size: 13px;
-      margin-bottom: 8px;
-      font-weight: 600;
-      opacity: 0.8;
-    }
-
-    .progress-bar-bg {
-      width: 100%;
-      height: 6px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: linear-gradient(to right, #25D366, #2a9d8f);
-      width: 0%;
-      transition: width 0.4s ease;
-      border-radius: 4px;
-    }
-
-    .filtres-container {
-      display: flex;
-      gap: 8px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .btn-filtre {
-      flex: 1;
-      padding: 8px 14px;
-      font-size: 13px;
-      font-weight: 600;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 20px;
-      cursor: pointer;
-      background: rgba(255,255,255,0.05);
-      color: var(--text-color);
-      transition: all 0.2s;
-    }
-
-    .btn-filtre:hover {
-      background: rgba(255,255,255,0.15);
-    }
-
-    .btn-filtre.actif {
-      background: white;
-      color: #1e293b;
-      border-color: white;
-    }
-
-    #listeTaches {
-      list-style: none;
-      padding: 0;
-      min-height: 20px;
-    }
-
-    #listeTaches li {
-      background: rgba(255,255,255,0.05);
-      padding: 14px 18px;
-      margin: 10px 0;
-      border-radius: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all 0.2s ease;
-      border-left: 4px solid transparent;
-      border: 1px solid rgba(255,255,255,0.05);
-    }
-
-    #listeTaches li:hover {
-      background: rgba(255, 255, 255, 0.08);
-      transform: translateX(2px);
-    }
-
-    .tache-info {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .tache-categorie {
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-weight: 700;
-      width: fit-content;
-      padding: 2px 8px;
-      border-radius: 4px;
-      color: white;
-      margin-bottom: 2px;
-    }
-
-    .finie {
-      text-decoration: line-through;
-      opacity: 0.5 !important;
-    }
-
-    .cat-perso { border-left: 4px solid #a855f7 !important; }
-    .cat-perso .tache-categorie { background: #a855f7; }
-    
-    .cat-boulot { border-left: 4px solid #3b82f6 !important; }
-    .cat-boulot .tache-categorie { background: #3b82f6; }
-    
-    .cat-ifsm { border-left: 4px solid #f97316 !important; }
-    .cat-ifsm .tache-categorie { background: #f97316; }
-
-    .tache-date {
-      font-size: 11px;
-      opacity: 0.6;
-      margin-top: 2px;
-    }
-
-    .btn-supprimer {
-      background: rgba(255, 68, 68, 0.1);
-      color: #ff4444;
-      padding: 6px 12px;
-      font-size: 12px;
-      font-weight: 600;
-      border-radius: 6px;
-      border: 1px solid rgba(255, 68, 68, 0.2);
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .btn-supprimer:hover {
-      background: #ff4444;
-      color: white;
-    }
-
-    /* 5. GRILLE DE PORTFOLIO (PROJETS) */
-    .projets-section {
-      margin-top: 40px;
-      padding: 30px 25px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: left;
-    }
-
-    .projets-section h2 {
-      margin-bottom: 5px;
-      font-weight: 700;
-      text-align: center;
-    }
-
-    .projets-subtitle {
-      font-size: 14px;
-      opacity: 0.7;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .projets-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .projet-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .projet-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(255,255,255,0.25);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    }
-
-    .projet-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-
-    .projet-desc {
-      font-size: 14px;
-      opacity: 0.8;
-      line-height: 1.5;
-      margin-bottom: 15px;
-    }
-
-    .projet-techs {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-
-    .tech-tag {
-      font-size: 11px;
-      font-weight: 600;
-      background: rgba(255,255,255,0.1);
-      padding: 4px 8px;
-      border-radius: 4px;
-    }
-
-    .projet-link {
-      display: inline-block;
-      text-align: center;
-      background: rgba(255,255,255,0.2);
-      color: var(--text-color);
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
-
-    .projet-link:hover {
-      background: rgba(255,255,255,0.9);
-      color: #1e293b;
-    }
-  </style>
-</head>
-
+    chargerTaches();
+  </script>
+</body>
+</html>
