@@ -3,10 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DJP | Développeur Web Abidjan | Portfolio</title>
-  <meta name="description" content="Portfolio de DJP, développeur web à Abidjan. HTML, CSS, JavaScript. Projets, compétences et contact.">
+  <title>Jean-Yves Djiguemde | Développeur Web & Mobile – Abidjan</title>
+  <meta name="description" content="Portfolio de Jean-Yves Djiguemde, développeur web & mobile à Abidjan. HTML, CSS, JavaScript. Projets, compétences et contact.">
+  <!-- Open Graph pour un bel aperçu quand tu partages le lien -->
+  <meta property="og:title" content="Jean-Yves Djiguemde | Développeur Web & Mobile">
+  <meta property="og:description" content="Développeur web basé à Abidjan, je conçois des interfaces modernes et responsive.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portfolio-djp.vercel.app/">
   <link rel="icon" type="image/png" href="/favicon.png">
-  
+
   <style>
     :root {
       --bg-gradient: linear-gradient(135deg, #ff7e5f, #2a9d8f);
@@ -14,76 +19,78 @@
       --text-color: #ffffff;
       --input-bg: rgba(255, 255, 255, 0.2);
       --accent-color: #25D366;
+      --section-border: rgba(255,255,255,0.1);
     }
-
     .dark-mode {
       --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b);
       --card-bg: rgba(255, 255, 255, 0.05);
       --text-color: #f8fafc;
       --input-bg: rgba(0, 0, 0, 0.3);
+      --section-border: rgba(255,255,255,0.07);
     }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: var(--bg-gradient);
       font-family: 'Segoe UI', Arial, sans-serif;
       color: var(--text-color);
       text-align: center;
-      padding: 40px 20px;
+      padding: 40px 20px 60px;
       min-height: 100vh;
       transition: all 0.3s ease;
     }
 
+    /* ── Animations Fade-in ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Hero ── */
     .hero-container {
       max-width: 650px;
       margin: 0 auto;
     }
-
     h1 {
       font-size: clamp(28px, 6vw, 44px);
       font-weight: 800;
       margin-bottom: 8px;
       letter-spacing: -0.5px;
     }
-
     h2 {
       font-size: clamp(18px, 4vw, 24px);
       font-weight: 600;
       opacity: 0.9;
       margin-bottom: 20px;
     }
-
     .hero-desc {
       font-size: clamp(15px, 3.5vw, 17px);
       line-height: 1.6;
       opacity: 0.85;
       margin-bottom: 30px;
     }
-
     .profile-img {
-      border: 4px solid rgba(255, 255, 255, 0.4);
+      border: 4px solid rgba(255,255,255,0.4);
       border-radius: 50%;
-      box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
       width: 170px;
       height: 170px;
       object-fit: cover;
       margin-bottom: 25px;
       transition: transform 0.3s ease;
     }
-    
-    .profile-img:hover {
-      transform: scale(1.03);
-    }
+    .profile-img:hover { transform: scale(1.04); }
 
     .btn-whatsapp {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 8px;
       background: var(--accent-color);
       color: white;
       padding: 14px 28px;
@@ -91,16 +98,14 @@
       text-decoration: none;
       font-weight: 700;
       font-size: 15px;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+      box-shadow: 0 4px 15px rgba(37,211,102,0.3);
       transition: all 0.3s ease;
       margin-bottom: 35px;
     }
-
     .btn-whatsapp:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+      box-shadow: 0 6px 20px rgba(37,211,102,0.5);
     }
-
     .points-forts {
       display: flex;
       justify-content: center;
@@ -108,18 +113,17 @@
       margin-bottom: 50px;
       flex-wrap: wrap;
     }
-
     .point {
       font-size: 14px;
       font-weight: 600;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       backdrop-filter: blur(5px);
       padding: 8px 16px;
       border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255,255,255,0.15);
     }
 
+    /* ── Theme toggle ── */
     .theme-toggle {
       position: fixed;
       top: 20px;
@@ -136,69 +140,161 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.3s;
     }
+    .theme-toggle:hover { transform: scale(1.1); }
 
-    .todo-section {
-      margin-top: 40px;
+    /* ── Sections communes ── */
+    .card-section {
+      margin-top: 30px;
       padding: 30px 25px;
       background: var(--card-bg);
-      border-radius: 15px;
-      max-width: 600px;
+      border-radius: 18px;
+      max-width: 650px;
       margin-left: auto;
       margin-right: auto;
       text-align: left;
       backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid var(--section-border);
     }
-
-    .todo-section h2 {
-      margin-bottom: 5px;
+    .card-section h2 {
+      margin-bottom: 6px;
       font-weight: 700;
+      font-size: clamp(18px, 4vw, 22px);
+    }
+    .section-subtitle {
+      font-size: 13px;
+      opacity: 0.65;
+      margin-bottom: 22px;
     }
 
+    /* ── Qui suis-je ── */
+    .about-text {
+      font-size: 15px;
+      line-height: 1.75;
+    }
+
+    /* ── Compétences ── */
+    .skills-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .skill-item { display: flex; flex-direction: column; gap: 6px; }
+    .skill-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .skill-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .skill-bar-fill {
+      height: 100%;
+      border-radius: 6px;
+      width: 0%;
+      transition: width 1s ease 0.2s;
+    }
+    .skill-bar-fill.html  { background: linear-gradient(to right, #e34f26, #f06529); }
+    .skill-bar-fill.css   { background: linear-gradient(to right, #264de4, #2965f1); }
+    .skill-bar-fill.js    { background: linear-gradient(to right, #f0db4f, #e8b800); }
+    .skill-bar-fill.resp  { background: linear-gradient(to right, #25D366, #2a9d8f); }
+    .skill-bar-fill.git   { background: linear-gradient(to right, #f05032, #c0392b); }
+
+    /* ── Projets ── */
+    .projets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .projet-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+    .projet-card:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .projet-emoji { font-size: 28px; margin-bottom: 10px; }
+    .projet-titre {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .projet-desc {
+      font-size: 13px;
+      opacity: 0.75;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .projet-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .projet-lien {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-color);
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    .projet-lien:hover { opacity: 1; text-decoration: underline; }
+
+    /* ── To-Do List ── */
+    .todo-section { margin-top: 30px; }
     .todo-subtitle {
-      font-size: 14px !important;
-      opacity: 0.7;
-      margin-bottom: 25px !important;
-      text-align: left;
+      font-size: 13px;
+      opacity: 0.65;
+      margin-bottom: 22px;
     }
-
     .input-section {
       display: flex;
       gap: 10px;
       margin-bottom: 20px;
       flex-wrap: wrap;
     }
-
     #champTache, #categorieTache, #dateTache {
       padding: 12px;
       font-size: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255,255,255,0.2);
       border-radius: 8px;
       background: var(--input-bg);
       color: var(--text-color);
       outline: none;
       transition: all 0.2s;
     }
-
     #champTache:focus, #categorieTache:focus, #dateTache:focus {
-      border-color: rgba(255, 255, 255, 0.6);
-      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+      border-color: rgba(255,255,255,0.6);
     }
+    #champTache { flex: 2; min-width: 200px; }
+    #categorieTache, #dateTache { flex: 1; min-width: 120px; }
+    #champTache::placeholder { color: rgba(255,255,255,0.5); }
 
-    #champTache {
-      flex: 2;
-      min-width: 200px;
-    }
-
-    #categorieTache, #dateTache {
-      flex: 1;
-      min-width: 120px;
-    }
-
-    #champTache::placeholder {
-      color: rgba(255, 255, 255, 0.5);
-    }
+    select option { background: #1e293b; color: #fff; }
 
     .btn-todo {
       padding: 12px 20px;
@@ -209,45 +305,35 @@
       cursor: pointer;
       transition: all 0.2s ease;
     }
-
     .btn-ajouter {
       background: white;
       color: #2a9d8f;
       flex: 1;
       min-width: 100px;
     }
-
-    .btn-ajouter:hover {
-      background: rgba(255,255,255,0.9);
-      transform: translateY(-1px);
-    }
+    .btn-ajouter:hover { background: rgba(255,255,255,0.9); transform: translateY(-1px); }
 
     #toutSupprimer {
-      background: rgba(255, 68, 68, 0.15);
+      background: rgba(255,68,68,0.15);
       color: #ff4444;
-      border: 1px solid rgba(255, 68, 68, 0.3);
+      border: 1px solid rgba(255,68,68,0.3);
       width: 48%;
     }
-
-    #toutSupprimer:hover {
-      background: rgba(255, 68, 68, 0.3);
-    }
+    #toutSupprimer:hover { background: rgba(255,68,68,0.3); }
 
     #btnExporter {
-      background: rgba(52, 152, 219, 0.15);
+      background: rgba(52,152,219,0.15);
       color: #3498db;
-      border: 1px solid rgba(52, 152, 219, 0.3);
+      border: 1px solid rgba(52,152,219,0.3);
       width: 48%;
     }
-
-    #btnExporter:hover {
-      background: rgba(52, 152, 219, 0.3);
-    }
+    #btnExporter:hover { background: rgba(52,152,219,0.3); }
 
     .actions-bottom {
       display: flex;
       justify-content: space-between;
       margin-top: 20px;
+      gap: 10px;
     }
 
     .stats-container {
@@ -257,14 +343,12 @@
       margin-bottom: 20px;
       border: 1px solid rgba(255,255,255,0.05);
     }
-
     .stats-texte {
       font-size: 13px;
       margin-bottom: 8px;
       font-weight: 600;
       opacity: 0.8;
     }
-
     .progress-bar-bg {
       width: 100%;
       height: 6px;
@@ -272,7 +356,6 @@
       border-radius: 4px;
       overflow: hidden;
     }
-
     .progress-bar-fill {
       height: 100%;
       background: linear-gradient(to right, #25D366, #2a9d8f);
@@ -287,7 +370,6 @@
       margin-bottom: 20px;
       flex-wrap: wrap;
     }
-
     .btn-filtre {
       flex: 1;
       padding: 8px 14px;
@@ -300,23 +382,10 @@
       color: var(--text-color);
       transition: all 0.2s;
     }
+    .btn-filtre:hover { background: rgba(255,255,255,0.15); }
+    .btn-filtre.actif { background: white; color: #1e293b; border-color: white; }
 
-    .btn-filtre:hover {
-      background: rgba(255,255,255,0.15);
-    }
-
-    .btn-filtre.actif {
-      background: white;
-      color: #1e293b;
-      border-color: white;
-    }
-
-    #listeTaches {
-      list-style: none;
-      padding: 0;
-      min-height: 20px;
-    }
-
+    #listeTaches { list-style: none; padding: 0; min-height: 20px; }
     #listeTaches li {
       background: rgba(255,255,255,0.05);
       padding: 14px 18px;
@@ -326,22 +395,19 @@
       justify-content: space-between;
       align-items: center;
       transition: all 0.2s ease;
-      border-left: 4px solid transparent;
       border: 1px solid rgba(255,255,255,0.05);
     }
-
     #listeTaches li:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,0.08);
       transform: translateX(2px);
     }
-
     .tache-info {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 4px;
+      cursor: pointer;
     }
-
     .tache-categorie {
       font-size: 10px;
       text-transform: uppercase;
@@ -351,64 +417,72 @@
       padding: 2px 8px;
       border-radius: 4px;
       color: white;
-      margin-bottom: 2px;
     }
-
-    .finie {
+    .tache-texte.finie {
       text-decoration: line-through;
-      opacity: 0.5 !important;
+      opacity: 0.5;
     }
+    .tache-date { font-size: 11px; opacity: 0.6; }
 
-    .cat-perso { border-left: 4px solid #a855f7 !important; }
-    .cat-perso .tache-categorie { background: #a855f7; }
-    
+    .cat-perso  { border-left: 4px solid #a855f7 !important; }
+    .cat-perso  .tache-categorie { background: #a855f7; }
     .cat-boulot { border-left: 4px solid #3b82f6 !important; }
     .cat-boulot .tache-categorie { background: #3b82f6; }
-    
-    .cat-ifsm { border-left: 4px solid #f97316 !important; }
-    .cat-ifsm .tache-categorie { background: #f97316; }
-
-    .tache-date {
-      font-size: 11px;
-      opacity: 0.6;
-      margin-top: 2px;
-    }
+    .cat-ifsm   { border-left: 4px solid #f97316 !important; }
+    .cat-ifsm   .tache-categorie { background: #f97316; }
 
     .btn-supprimer {
-      background: rgba(255, 68, 68, 0.1);
+      background: rgba(255,68,68,0.1);
       color: #ff4444;
       padding: 6px 12px;
       font-size: 12px;
       font-weight: 600;
       border-radius: 6px;
-      border: 1px solid rgba(255, 68, 68, 0.2);
+      border: 1px solid rgba(255,68,68,0.2);
       cursor: pointer;
       transition: all 0.2s;
+      flex-shrink: 0;
+    }
+    .btn-supprimer:hover { background: #ff4444; color: white; }
+
+    /* ── Footer ── */
+    footer {
+      margin-top: 50px;
+      font-size: 13px;
+      opacity: 0.55;
+      line-height: 1.7;
+    }
+    footer a {
+      color: var(--text-color);
+      text-decoration: underline;
+      opacity: 0.8;
     }
 
-    .btn-supprimer:hover {
-      background: #ff4444;
-      color: white;
+    /* ── Responsive mobile ── */
+    @media (max-width: 480px) {
+      .projets-grid { grid-template-columns: 1fr; }
+      .actions-bottom { flex-direction: column; }
+      #toutSupprimer, #btnExporter { width: 100%; }
     }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" id="themeToggle" title="Changer le thème">🌙</button>
 
-  <button class="theme-toggle" id="themeToggle">🌙</button>
-
-  <div class="hero-container">
+  <!-- ══ HERO ══ -->
+  <div class="hero-container fade-in">
     <h1>Jean-Yves Djiguemde</h1>
     <h2>Développeur Web & Mobile</h2>
     <p class="hero-desc">
-      Passionné par l'univers de la tech, je conçois des solutions digitales modernes, rapides et entièrement adaptées à tous vos écrans.
+      Passionné par l'univers de la tech, je conçois des solutions digitales modernes,
+      rapides et entièrement adaptées à tous vos écrans.
     </p>
-
-    <img src="moi.jpg" alt="Jean-Yves Djiguemde - Développeur Web" class="profile-img">
+    <img src="moi.jpg" alt="Jean-Yves Djiguemde – Développeur Web Abidjan" class="profile-img">
     <br>
-    <a href="https://wa.me" class="btn-whatsapp" target="_blank">
-      Contactez-moi sur WhatsApp
+    <!-- ✅ Numéro WhatsApp corrigé -->
+    <a href="https://wa.me/2250142048659" class="btn-whatsapp" target="_blank" rel="noopener noreferrer">
+      <span>💬</span> Contactez-moi sur WhatsApp
     </a>
-
     <div class="points-forts">
       <div class="point">⚡ Rapide</div>
       <div class="point">📱 Responsive</div>
@@ -416,20 +490,101 @@
     </div>
   </div>
 
-  <section style="margin-top: 20px; padding: 30px 25px; background: var(--card-bg); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: left; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
-    <h2 style="margin-bottom: 15px; font-weight: 700;">Qui suis-je ?</h2>
-    <p style="font-size: 15px; line-height: 1.7; margin-bottom: 0;">
-      Bonjour ! Je m'appelle <strong>Jean-Yves Djiguemde</strong>. Actuellement étudiant en 1ère année IDA à l'<strong>IFSM ANGRÉ (Abidjan)</strong>, je me forme de manière intensive sur les technologies clés du web : HTML, CSS et JavaScript. <br><br>
-      Mon objectif est simple : transformer vos concepts et vos idées en interfaces dynamiques, fluides et mémorables. Curieux et rigoureux, je suis toujours prêt à relever de nouveaux défis techniques. Créons ensemble votre projet !
+  <!-- ══ QUI SUIS-JE ? ══ -->
+  <section class="card-section fade-in" style="margin-top: 30px;">
+    <h2>Qui suis-je ?</h2>
+    <p class="section-subtitle">Un peu plus sur mon parcours</p>
+    <p class="about-text">
+      Bonjour ! Je m'appelle <strong>Jean-Yves Djiguemde</strong>. Actuellement étudiant
+      en 1ère année IDA à l'<strong>IFSM ANGRÉ (Abidjan)</strong>, je me forme de manière
+      intensive sur les technologies clés du web : HTML, CSS et JavaScript.<br><br>
+      Mon objectif est simple : transformer vos concepts et vos idées en interfaces
+      dynamiques, fluides et mémorables. Curieux et rigoureux, je suis toujours prêt à
+      relever de nouveaux défis techniques. <strong>Créons ensemble votre projet !</strong>
     </p>
   </section>
 
-  <section class="todo-section">
+  <!-- ══ COMPÉTENCES ══ -->
+  <section class="card-section fade-in">
+    <h2>Compétences</h2>
+    <p class="section-subtitle">Mes technologies maîtrisées</p>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <div class="skill-header"><span>HTML5</span><span>85%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill html" data-level="85"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span>CSS3</span><span>80%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill css" data-level="80"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span>JavaScript</span><span>65%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill js" data-level="65"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span>Responsive Design</span><span>78%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill resp" data-level="78"></div></div>
+      </div>
+      <div class="skill-item">
+        <div class="skill-header"><span>Git & GitHub</span><span>55%</span></div>
+        <div class="skill-bar-bg"><div class="skill-bar-fill git" data-level="55"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ PROJETS ══ -->
+  <section class="card-section fade-in">
+    <h2>Mes Projets</h2>
+    <p class="section-subtitle">Quelques réalisations récentes</p>
+    <div class="projets-grid">
+
+      <div class="projet-card">
+        <div class="projet-emoji">🛒</div>
+        <div class="projet-titre">Landing Page E-commerce</div>
+        <div class="projet-desc">Page vitrine responsive pour une boutique en ligne locale avec catalogue produits et formulaire de commande.</div>
+        <div class="projet-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+        </div>
+        <a href="#" class="projet-lien">🔗 Voir le projet</a>
+      </div>
+
+      <div class="projet-card">
+        <div class="projet-emoji">🧮</div>
+        <div class="projet-titre">Calculatrice Web</div>
+        <div class="projet-desc">Calculatrice fonctionnelle avec interface moderne, gestion des opérations et historique de calculs.</div>
+        <div class="projet-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+        </div>
+        <a href="#" class="projet-lien">🔗 Voir le projet</a>
+      </div>
+
+      <div class="projet-card">
+        <div class="projet-emoji">📋</div>
+        <div class="projet-titre">To-Do App (ce portfolio !)</div>
+        <div class="projet-desc">Application de gestion de tâches avec catégories, filtres, persistance localStorage et export JSON.</div>
+        <div class="projet-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JS</span>
+          <span class="tag">localStorage</span>
+        </div>
+        <a href="https://portfolio-djp.vercel.app/" class="projet-lien" target="_blank">🔗 Voir le projet</a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══ TO-DO LIST ══ -->
+  <section class="card-section todo-section fade-in">
     <h2>Ma To-Do List</h2>
     <p class="todo-subtitle">Suivez l'avancement de vos tâches quotidiennes en temps réel.</p>
 
     <div class="stats-container">
-      <div class="stats-texte">Progression des tâches</div>
+      <div class="stats-texte" id="statsTexte">Progression des tâches — 0 / 0</div>
       <div class="progress-bar-bg">
         <div class="progress-bar-fill" id="barreProgression"></div>
       </div>
@@ -450,148 +605,207 @@
         <option value="ifsm">IFSM</option>
       </select>
       <input type="date" id="dateTache">
-      <button class="btn-todo btn-ajouter" id="btnAjouter">Ajouter</button>
+      <button class="btn-todo btn-ajouter" id="btnAjouter">+ Ajouter</button>
     </div>
 
     <ul id="listeTaches"></ul>
 
     <div class="actions-bottom">
-      <button class="btn-todo" id="toutSupprimer">Tout effacer</button>
-      <button class="btn-todo" id="btnExporter">Exporter JSON</button>
+      <button class="btn-todo" id="toutSupprimer">🗑️ Tout effacer</button>
+      <button class="btn-todo" id="btnExporter">📥 Exporter JSON</button>
     </div>
   </section>
 
+  <!-- ══ FOOTER ══ -->
+  <footer class="fade-in">
+    <p>© 2025 Jean-Yves Djiguemde – Développeur Web & Mobile – Abidjan, Côte d'Ivoire</p>
+    <p>Conçu avec ❤️ en HTML, CSS & JavaScript</p>
+    <p style="margin-top:6px;">
+      <a href="https://wa.me/2250142048659" target="_blank" rel="noopener">WhatsApp</a>
+    </p>
+  </footer>
+
   <script>
+    /* ══════════════════════════════════════════
+       THÈME DARK / LIGHT
+    ══════════════════════════════════════════ */
     const themeToggle = document.getElementById('themeToggle');
+    const savedTheme  = localStorage.getItem('djp_theme');
+    if (savedTheme === 'dark') {
+      document.body.classList.add('dark-mode');
+      themeToggle.textContent = '☀️';
+    }
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
-      themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+      const isDark = document.body.classList.contains('dark-mode');
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+      localStorage.setItem('djp_theme', isDark ? 'dark' : 'light');
     });
 
-    const champTache = document.getElementById('champTache');
+    /* ══════════════════════════════════════════
+       ANIMATIONS FADE-IN (Intersection Observer)
+    ══════════════════════════════════════════ */
+    const observateur = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          // Animer les barres de compétences à l'entrée dans le viewport
+          entry.target.querySelectorAll('.skill-bar-fill').forEach(bar => {
+            bar.style.width = bar.dataset.level + '%';
+          });
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observateur.observe(el));
+
+    /* ══════════════════════════════════════════
+       TO-DO LIST
+    ══════════════════════════════════════════ */
+    const champTache     = document.getElementById('champTache');
     const categorieTache = document.getElementById('categorieTache');
-    const dateTache = document.getElementById('dateTache');
-    const btnAjouter = document.getElementById('btnAjouter');
-    const listeTaches = document.getElementById('listeTaches');
+    const dateTache      = document.getElementById('dateTache');
+    const btnAjouter     = document.getElementById('btnAjouter');
+    const listeTaches    = document.getElementById('listeTaches');
     const barreProgression = document.getElementById('barreProgression');
-    const toutSupprimer = document.getElementById('toutSupprimer');
-    const btnExporter = document.getElementById('btnExporter');
+    const statsTexte     = document.getElementById('statsTexte');
+    const toutSupprimer  = document.getElementById('toutSupprimer');
+    const btnExporter    = document.getElementById('btnExporter');
     const boutonsFiltres = document.querySelectorAll('.btn-filtre');
 
+    // ── Sauvegarde localStorage ──
     function sauvegarderTaches() {
       const taches = [];
       listeTaches.querySelectorAll('li').forEach(li => {
         taches.push({
-          texte: li.querySelector('.tache-texte').textContent,
-          categorie: li.querySelector('.tache-categorie').textContent.toLowerCase(),
-          date: li.querySelector('.tache-date').textContent,
-          finie: li.classList.contains('finie')
+          texte:     li.querySelector('.tache-texte').textContent,
+          categorie: li.dataset.cat,
+          date:      li.querySelector('.tache-date').textContent,
+          finie:     li.querySelector('.tache-texte').classList.contains('finie')
         });
       });
       localStorage.setItem('djp_taches', JSON.stringify(taches));
     }
 
+    // ── Chargement au démarrage ──
     function chargerTaches() {
-      const tachesStockees = localStorage.getItem('djp_taches');
-      if (!tachesStockees) return;
-
-      const taches = JSON.parse(tachesStockees);
-      taches.forEach(tache => {
-        creerElementTache(tache.texte, tache.categorie, tache.date, tache.finie);
-      });
+      const stockage = localStorage.getItem('djp_taches');
+      if (!stockage) return;
+      JSON.parse(stockage).forEach(t =>
+        creerElementTache(t.texte, t.categorie, t.date, t.finie)
+      );
       majProgression();
     }
 
+    // ── Barre de progression ──
     function majProgression() {
-      const total = listeTaches.children.length;
-      const finies = listeTaches.querySelectorAll('.finie').length;
-      const pourcentage = total === 0 ? 0 : (finies / total) * 100;
-      barreProgression.style.width = pourcentage + '%';
+      const total  = listeTaches.children.length;
+      const finies = listeTaches.querySelectorAll('.tache-texte.finie').length;
+      const pct    = total === 0 ? 0 : Math.round((finies / total) * 100);
+      barreProgression.style.width = pct + '%';
+      statsTexte.textContent = `Progression des tâches — ${finies} / ${total} (${pct}%)`;
     }
 
+    // ── Créer un élément tâche ──
     function creerElementTache(texte, cat, dateVal, estFinie = false) {
       const li = document.createElement('li');
       li.className = `cat-${cat}`;
-      if (estFinie) li.classList.add('finie');
-      
+      li.dataset.cat = cat; // ✅ FIX : utiliser dataset pour les filtres (robuste)
+
       li.innerHTML = `
         <div class="tache-info">
-          <span class="tache-categorie">${cat}</span>
-          <span class="tache-texte">${texte}</span>
+          <span class="tache-categorie">${cat.toUpperCase()}</span>
+          <span class="tache-texte${estFinie ? ' finie' : ''}">${texte}</span>
           <span class="tache-date">${dateVal}</span>
         </div>
-        <button class="btn-supprimer">Supprimer</button>
+        <button class="btn-supprimer" title="Supprimer">✕</button>
       `;
 
+      // Clic sur l'info → cocher/décocher
       li.querySelector('.tache-info').addEventListener('click', () => {
-        li.classList.toggle('finie');
+        li.querySelector('.tache-texte').classList.toggle('finie');
         majProgression();
         sauvegarderTaches();
       });
 
+      // Bouton supprimer
       li.querySelector('.btn-supprimer').addEventListener('click', (e) => {
         e.stopPropagation();
-        li.remove();
-        majProgression();
-        sauvegarderTaches();
+        li.style.opacity = '0';
+        li.style.transform = 'translateX(20px)';
+        setTimeout(() => {
+          li.remove();
+          majProgression();
+          sauvegarderTaches();
+        }, 200);
       });
 
       listeTaches.appendChild(li);
     }
 
-    btnAjouter.addEventListener('click', () => {
-      const texte = champTache.value.trim();
-      const cat = categorieTache.value;
-      const dateVal = dateTache.value ? `📅 ${dateTache.value}` : '📅 Pas de date';
+    // ── Ajouter une tâche ──
+    btnAjouter.addEventListener('click', ajouterTache);
+    champTache.addEventListener('keydown', e => { if (e.key === 'Enter') ajouterTache(); });
 
-      if (!texte) return alert('Veuillez renseigner le libellé de votre tâche.');
+    function ajouterTache() {
+      const texte   = champTache.value.trim();
+      const cat     = categorieTache.value;
+      const dateVal = dateTache.value
+        ? `📅 ${dateTache.value}`
+        : '📅 Pas de date';
+
+      if (!texte) {
+        champTache.focus();
+        champTache.style.borderColor = '#ff4444';
+        setTimeout(() => champTache.style.borderColor = '', 1500);
+        return;
+      }
 
       creerElementTache(texte, cat, dateVal);
       champTache.value = '';
-      
       majProgression();
       sauvegarderTaches();
-      
-      // Réinitialise le filtre sur "Toutes" après ajout pour voir la tâche
-      document.querySelector('.btn-filtre[data-filtre="toutes"]').click();
-    });
 
+      // Revenir au filtre "Toutes" pour voir la nouvelle tâche
+      document.querySelector('.btn-filtre[data-filtre="toutes"]').click();
+    }
+
+    // ── Tout effacer ──
     toutSupprimer.addEventListener('click', () => {
+      if (listeTaches.children.length === 0) return;
+      if (!confirm('Confirmer la suppression de toutes les tâches ?')) return;
       listeTaches.innerHTML = '';
       majProgression();
       localStorage.removeItem('djp_taches');
     });
 
-    // Logique des Filtres de catégories
+    // ── Filtres (✅ FIX : utilise dataset.cat) ──
     boutonsFiltres.forEach(btn => {
       btn.addEventListener('click', () => {
         boutonsFiltres.forEach(b => b.classList.remove('actif'));
         btn.classList.add('actif');
-        
-        const filtre = btn.getAttribute('data-filtre');
+
+        const filtre = btn.dataset.filtre;
         listeTaches.querySelectorAll('li').forEach(li => {
-          const catTache = li.className.replace('cat-', '').replace(' finie', '').trim();
-          if (filtre === 'toutes' || catTache === filtre) {
-            li.style.setProperty('display', 'flex', 'important');
-          } else {
-            li.style.setProperty('display', 'none', 'important');
-          }
+          const visible = filtre === 'toutes' || li.dataset.cat === filtre;
+          li.style.display = visible ? 'flex' : 'none';
         });
       });
     });
 
-    // Logique Export JSON fonctionnelle
+    // ── Export JSON ──
     btnExporter.addEventListener('click', () => {
-      const tachesStockees = localStorage.getItem('djp_taches') || '[]';
-      const blob = new Blob([tachesStockees], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
+      const stockage = localStorage.getItem('djp_taches') || '[]';
+      const blob = new Blob([stockage], { type: 'application/json' });
+      const url  = URL.createObjectURL(blob);
+      const a    = document.createElement('a');
+      a.href     = url;
       a.download = 'mes_taches_djp.json';
       a.click();
       URL.revokeObjectURL(url);
     });
 
+    // ── Init ──
     chargerTaches();
   </script>
 </body>
