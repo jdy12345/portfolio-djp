@@ -6,6 +6,7 @@
   <title>DJP | Développeur Web Abidjan | Portfolio</title>
   <meta name="description" content="Portfolio de DJP, développeur web à Abidjan. HTML, CSS, JavaScript. Projets, compétences et contact.">
   <link rel="icon" type="image/png" href="/favicon.png">
+  
   <style>
     :root {
       --bg-gradient: linear-gradient(135deg, #ff7e5f, #2a9d8f);
@@ -15,7 +16,7 @@
       --accent-color: #25D366;
     }
 
-   .dark-mode {
+    .dark-mode {
       --bg-gradient: linear-gradient(135deg, #0f172a, #1e293b);
       --card-bg: rgba(255, 255, 255, 0.05);
       --text-color: #f8fafc;
@@ -38,7 +39,6 @@
       transition: all 0.3s ease;
     }
 
-    /* --- HERO RE-DESIGNED --- */
     .hero-container {
       max-width: 650px;
       margin: 0 auto;
@@ -80,7 +80,7 @@
       transform: scale(1.03);
     }
 
-   .btn-whatsapp {
+    .btn-whatsapp {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -96,12 +96,12 @@
       margin-bottom: 35px;
     }
 
-   .btn-whatsapp:hover {
+    .btn-whatsapp:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
     }
 
-   .points-forts {
+    .points-forts {
       display: flex;
       justify-content: center;
       gap: 12px;
@@ -109,7 +109,7 @@
       flex-wrap: wrap;
     }
 
-   .point {
+    .point {
       font-size: 14px;
       font-weight: 600;
       background: rgba(255, 255, 255, 0.1);
@@ -120,7 +120,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
-   .theme-toggle {
+    .theme-toggle {
       position: fixed;
       top: 20px;
       right: 20px;
@@ -138,237 +138,277 @@
       justify-content: center;
     }
 
-    /* === TO-DO LIST V4.2 === */
+    .todo-section {
+      margin-top: 40px;
+      padding: 30px 25px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .todo-section h2 {
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .todo-subtitle {
+      font-size: 14px !important;
+      opacity: 0.7;
+      margin-bottom: 25px !important;
+      text-align: left;
+    }
+
     .input-section {
       display: flex;
       gap: 10px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
 
     #champTache, #categorieTache, #dateTache {
       padding: 12px;
-      font-size: 16px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 8px;
       background: var(--input-bg);
       color: var(--text-color);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    #champTache:focus, #categorieTache:focus, #dateTache:focus {
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
     }
 
     #champTache {
-      flex: 1;
+      flex: 2;
       min-width: 200px;
     }
 
-    #champTache::placeholder {
-      color: rgba(255, 255, 255, 0.7);
+    #categorieTache, #dateTache {
+      flex: 1;
+      min-width: 120px;
     }
 
-   .btn-todo {
-      padding: 12px 24px;
-      font-size: 16px;
-      font-weight: bold;
+    #champTache::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-todo {
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 700;
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      background: white;
-      color: #ff7e5f;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
     }
 
-   .btn-todo:hover {
-      transform: translateY(-2px);
+    .btn-ajouter {
+      background: white;
+      color: #2a9d8f;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .btn-ajouter:hover {
+      background: rgba(255,255,255,0.9);
+      transform: translateY(-1px);
     }
 
     #toutSupprimer {
-      background: #ff4444;
-      color: white;
+      background: rgba(255, 68, 68, 0.15);
+      color: #ff4444;
+      border: 1px solid rgba(255, 68, 68, 0.3);
       width: 48%;
-      margin-top: 15px;
+    }
+
+    #toutSupprimer:hover {
+      background: rgba(255, 68, 68, 0.3);
     }
 
     #btnExporter {
-      background: #3498db;
-      color: white;
+      background: rgba(52, 152, 219, 0.15);
+      color: #3498db;
+      border: 1px solid rgba(52, 152, 219, 0.3);
       width: 48%;
-      margin-top: 15px;
-      margin-left: 4%;
     }
 
-   .actions-bottom {
+    #btnExporter:hover {
+      background: rgba(52, 152, 219, 0.3);
+    }
+
+    .actions-bottom {
       display: flex;
       justify-content: space-between;
+      margin-top: 20px;
     }
 
-   .stats-container {
-      background: rgba(0,0,0,0.2);
+    .stats-container {
+      background: rgba(0,0,0,0.1);
       padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 15px;
-      text-align: left;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
-   .stats-texte {
-      font-size: 14px;
+    .stats-texte {
+      font-size: 13px;
       margin-bottom: 8px;
-      font-weight: bold;
+      font-weight: 600;
+      opacity: 0.8;
     }
 
-   .progress-bar-bg {
+    .progress-bar-bg {
       width: 100%;
-      height: 8px;
-      background: rgba(255,255,255,0.2);
+      height: 6px;
+      background: rgba(255,255,255,0.1);
       border-radius: 4px;
       overflow: hidden;
     }
 
-   .progress-bar-fill {
+    .progress-bar-fill {
       height: 100%;
-      background: #25D366;
+      background: linear-gradient(to right, #25D366, #2a9d8f);
       width: 0%;
-      transition: width 0.3s ease;
+      transition: width 0.4s ease;
       border-radius: 4px;
     }
 
-   .filtres-container {
+    .filtres-container {
       display: flex;
       gap: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
       flex-wrap: wrap;
     }
 
-   .btn-filtre {
+    .btn-filtre {
       flex: 1;
-      min-width: 70px;
-      padding: 8px 12px;
-      font-size: 14px;
-      font-weight: bold;
-      border: 2px solid rgba(255,255,255,0.3);
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.15);
       border-radius: 20px;
       cursor: pointer;
-      background: transparent;
+      background: rgba(255,255,255,0.05);
       color: var(--text-color);
       transition: all 0.2s;
     }
 
-   .btn-filtre:hover {
-      background: rgba(255,255,255,0.2);
+    .btn-filtre:hover {
+      background: rgba(255,255,255,0.15);
     }
 
-   .btn-filtre.actif {
+    .btn-filtre.actif {
       background: white;
-      color: #ff7e5f;
+      color: #1e293b;
       border-color: white;
-    }
-
-   .tache-cachee {
-      display: none!important;
     }
 
     #listeTaches {
       list-style: none;
       padding: 0;
-      text-align: left;
-      min-height: 50px;
+      min-height: 20px;
     }
 
     #listeTaches li {
-      background: var(--card-bg);
-      padding: 15px;
+      background: rgba(255,255,255,0.05);
+      padding: 14px 18px;
       margin: 10px 0;
-      border-radius: 8px;
+      border-radius: 10px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      cursor: grab;
-      transition: all 0.3s;
+      transition: all 0.2s ease;
       border-left: 4px solid transparent;
-    }
-
-    #listeTaches li:active {
-      cursor: grabbing;
-    }
-
-    #listeTaches li.dragging {
-      opacity: 0.5;
-      background: rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
     #listeTaches li:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(2px);
     }
 
-   .tache-info {
+    .tache-info {
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-   .tache-categorie {
-      font-size: 12px;
+    .tache-categorie {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      width: fit-content;
       padding: 2px 8px;
-      border-radius: 12px;
-      margin-right: 8px;
+      border-radius: 4px;
       color: white;
+      margin-bottom: 2px;
     }
 
-   .cat-perso { background: #9b59b6; border-left-color: #9b59b6!important; }
-   .cat-boulot { background: #3498db; border-left-color: #3498db!important; }
-   .cat-ifsm { background: #e67e22; border-left-color: #e67e22!important; }
-
-   .tache-date {
-      font-size: 12px;
-      opacity: 0.8;
-      display: block;
-      margin-top: 4px;
-    }
-
-   .en-retard {
-      color: #ff4444;
-      font-weight: bold;
-    }
-
-   .finie {
+    .finie {
       text-decoration: line-through;
-      opacity: 0.5;
+      opacity: 0.5 !important;
     }
 
-   .btn-supprimer {
+    .cat-perso { border-left: 4px solid #a855f7 !important; }
+    .cat-perso .tache-categorie { background: #a855f7; }
+    
+    .cat-boulot { border-left: 4px solid #3b82f6 !important; }
+    .cat-boulot .tache-categorie { background: #3b82f6; }
+    
+    .cat-ifsm { border-left: 4px solid #f97316 !important; }
+    .cat-ifsm .tache-categorie { background: #f97316; }
+
+    .tache-date {
+      font-size: 11px;
+      opacity: 0.6;
+      margin-top: 2px;
+    }
+
+    .btn-supprimer {
+      background: rgba(255, 68, 68, 0.1);
+      color: #ff4444;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 68, 68, 0.2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-supprimer:hover {
       background: #ff4444;
       color: white;
-      padding: 6px 12px;
-      font-size: 14px;
-      border-radius: 5px;
-      border: none;
-      cursor: pointer;
     }
-    /* === FIN TO-DO V4.2 === */
   </style>
 </head>
 <body>
+
   <button class="theme-toggle" id="themeToggle">🌙</button>
 
   <div class="hero-container">
-    <!-- H1 : Votre identité de marque principale -->
     <h1>Jean-Yves Djiguemde</h1>
-    
-    <!-- H2 : Votre spécialité (Excellent pour le SEO) -->
     <h2>Développeur Web & Mobile</h2>
-    
-    <!-- Présentation plus pro (évite le terme 'en devenir' qui dévalorise) -->
     <p class="hero-desc">
       Passionné par l'univers de la tech, je conçois des solutions digitales modernes, rapides et entièrement adaptées à tous vos écrans.
     </p>
 
-    <!-- Image de profil optimisée en taille et ombres -->
     <img src="moi.jpg" alt="Jean-Yves Djiguemde - Développeur Web" class="profile-img">
-    
     <br>
-    
-    <!-- Bouton WhatsApp épuré -->
-    <a href="https://wa.me/2250142048659" class="btn-whatsapp" target="_blank">
+    <a href="https://wa.me" class="btn-whatsapp" target="_blank">
       Contactez-moi sur WhatsApp
     </a>
 
-    <!-- Points forts sous forme de vrais badges UI moderne -->
     <div class="points-forts">
       <div class="point">⚡ Rapide</div>
       <div class="point">📱 Responsive</div>
@@ -376,7 +416,6 @@
     </div>
   </div>
 
-  <!-- A PROPOS -->
   <section style="margin-top: 20px; padding: 30px 25px; background: var(--card-bg); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: left; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
     <h2 style="margin-bottom: 15px; font-weight: 700;">Qui suis-je ?</h2>
     <p style="font-size: 15px; line-height: 1.7; margin-bottom: 0;">
@@ -384,3 +423,104 @@
       Mon objectif est simple : transformer vos concepts et vos idées en interfaces dynamiques, fluides et mémorables. Curieux et rigoureux, je suis toujours prêt à relever de nouveaux défis techniques. Créons ensemble votre projet !
     </p>
   </section>
+
+  <section class="todo-section">
+    <h2>Ma To-Do List</h2>
+    <p class="todo-subtitle">Suivez l'avancement de vos tâches quotidiennes en temps réel.</p>
+
+    <div class="stats-container">
+      <div class="stats-texte">Progression des tâches</div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="barreProgression"></div>
+      </div>
+    </div>
+
+    <div class="filtres-container">
+      <button class="btn-filtre actif" data-filtre="toutes">Toutes</button>
+      <button class="btn-filtre" data-filtre="perso">Perso</button>
+      <button class="btn-filtre" data-filtre="boulot">Boulot</button>
+      <button class="btn-filtre" data-filtre="ifsm">IFSM</button>
+    </div>
+
+    <div class="input-section">
+      <input type="text" id="champTache" placeholder="Ajouter une nouvelle tâche...">
+      <select id="categorieTache">
+        <option value="perso">Perso</option>
+        <option value="boulot">Boulot</option>
+        <option value="ifsm">IFSM</option>
+      </select>
+      <input type="date" id="dateTache">
+      <button class="btn-todo btn-ajouter" id="btnAjouter">Ajouter</button>
+    </div>
+
+    <ul id="listeTaches"></ul>
+
+    <div class="actions-bottom">
+      <button class="btn-todo" id="toutSupprimer">Tout effacer</button>
+      <button class="btn-todo" id="btnExporter">Exporter JSON</button>
+    </div>
+  </section>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+    });
+
+    const champTache = document.getElementById('champTache');
+    const categorieTache = document.getElementById('categorieTache');
+    const dateTache = document.getElementById('dateTache');
+    const btnAjouter = document.getElementById('btnAjouter');
+    const listeTaches = document.getElementById('listeTaches');
+    const barreProgression = document.getElementById('barreProgression');
+    const toutSupprimer = document.getElementById('toutSupprimer');
+
+    function majProgression() {
+      const total = listeTaches.children.length;
+      const finies = listeTaches.querySelectorAll('.finie').length;
+      const pourcentage = total === 0 ? 0 : (finies / total) * 100;
+      barreProgression.style.width = pourcentage + '%';
+    }
+
+    btnAjouter.addEventListener('click', () => {
+      const texte = champTache.value.trim();
+      const cat = categorieTache.value;
+      const dateVal = dateTache.value ? `📅 ${dateTache.value}` : '📅 Pas de date';
+
+      if (!texte) return alert('Veuillez renseigner le libellé de votre tâche.');
+
+      const li = document.createElement('li');
+      li.className = `cat-${cat}`;
+      li.innerHTML = `
+        <div class="tache-info">
+          <span class="tache-categorie">${cat}</span>
+          <span class="tache-texte">${texte}</span>
+          <span class="tache-date">${dateVal}</span>
+        </div>
+        <button class="btn-supprimer">Supprimer</button>
+      `;
+
+      li.querySelector('.tache-info').addEventListener('click', () => {
+        li.classList.toggle('finie');
+        majProgression();
+      });
+
+      li.querySelector('.btn-supprimer').addEventListener('click', (e) => {
+        e.stopPropagation();
+        li.remove();
+        majProgression();
+      });
+
+      listeTaches.appendChild(li);
+      champTache.value = '';
+      majProgression();
+    });
+
+    toutSupprimer.addEventListener('click', () => {
+      listeTaches.innerHTML = '';
+      majProgression();
+    });
+  </script>
+</body>
+</html>
