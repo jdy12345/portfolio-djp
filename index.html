@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   
   <style>
+    /* 1. VARIABLES DE COULEURS EN MODE CLAIR / SOMBRE */
     :root {
       --bg-gradient: linear-gradient(135deg, #ff7e5f, #2a9d8f);
       --card-bg: rgba(255,255,255,0.15);
@@ -23,6 +24,7 @@
       --input-bg: rgba(0, 0, 0, 0.3);
     }
 
+    /* 2. REINITIALISATION ET STYLES GENERAUX */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -39,6 +41,7 @@
       transition: all 0.3s ease;
     }
 
+    /* 3. SECTION PRESENTATION PRINCIPALE (HERO) */
     .hero-container {
       max-width: 650px;
       margin: 0 auto;
@@ -138,6 +141,7 @@
       justify-content: center;
     }
 
+    /* 4. DESIGN COMPOSANT TO-DO LIST */
     .todo-section {
       margin-top: 40px;
       padding: 30px 25px;
@@ -390,12 +394,62 @@
       background: #ff4444;
       color: white;
     }
-  </style>
-</head>
+
+    /* 5. GRILLE DE PORTFOLIO (PROJETS) */
+    .projets-section {
+      margin-top: 40px;
+      padding: 30px 25px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+
+    .projets-section h2 {
+      margin-bottom: 5px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .projets-subtitle {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .projets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .projet-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .projet-card:hover {
+transform: translateY(-5px);border-color: rgba(255,255,255,0.25);box-shadow: 0 10px 20px rgba(0,0,0,0.15);}.projet-title {font-size: 18px;font-weight: 700;margin-bottom: 10px;}.projet-desc {font-size: 14px;opacity: 0.8;line-height: 1.5;margin-bottom: 15px;}.projet-techs {display: flex;gap: 6px;flex-wrap: wrap;margin-bottom: 20px;}.tech-tag {font-size: 11px;font-weight: 600;background: rgba(255,255,255,0.1);padding: 4px 8px;border-radius: 4px;}.projet-link {display: inline-block;text-align: center;background: rgba(255,255,255,0.2);color: var(--text-color);text-decoration: none;font-size: 13px;font-weight: 700;padding: 10px;border-radius: 6px;transition: background 0.2s;}.projet-link:hover {background: rgba(255,255,255,0.9);color: #1e293b;}
+---
+
+### 📥 Bloc 2 : Toute l'architecture HTML du site
+À la suite du premier bloc, collez cette section qui contient le visuel de la page :
+
+```html
 <body>
 
+  <!-- Bouton Thème Jour/Nuit -->
   <button class="theme-toggle" id="themeToggle">🌙</button>
 
+  <!-- BLOC D'ACCUEIL (HERO) -->
   <div class="hero-container">
     <h1>Jean-Yves Djiguemde</h1>
     <h2>Développeur Web & Mobile</h2>
@@ -416,6 +470,7 @@
     </div>
   </div>
 
+  <!-- BLOC SECTION : QUI SUIS-JE -->
   <section style="margin-top: 20px; padding: 30px 25px; background: var(--card-bg); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: left; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
     <h2 style="margin-bottom: 15px; font-weight: 700;">Qui suis-je ?</h2>
     <p style="font-size: 15px; line-height: 1.7; margin-bottom: 0;">
@@ -424,10 +479,12 @@
     </p>
   </section>
 
+  <!-- BLOC SECTION : APPLICATION TO-DO LIST -->
   <section class="todo-section">
     <h2>Ma To-Do List</h2>
     <p class="todo-subtitle">Suivez l'avancement de vos tâches quotidiennes en temps réel.</p>
 
+    <!-- Zone de Statistiques -->
     <div class="stats-container">
       <div class="stats-texte">Progression des tâches</div>
       <div class="progress-bar-bg">
@@ -435,6 +492,7 @@
       </div>
     </div>
 
+    <!-- Filtres Applicatifs -->
     <div class="filtres-container">
       <button class="btn-filtre actif" data-filtre="toutes">Toutes</button>
       <button class="btn-filtre" data-filtre="perso">Perso</button>
@@ -442,6 +500,7 @@
       <button class="btn-filtre" data-filtre="ifsm">IFSM</button>
     </div>
 
+    <!-- Saisie Nouvelle Tâche -->
     <div class="input-section">
       <input type="text" id="champTache" placeholder="Ajouter une nouvelle tâche...">
       <select id="categorieTache">
@@ -453,14 +512,57 @@
       <button class="btn-todo btn-ajouter" id="btnAjouter">Ajouter</button>
     </div>
 
+    <!-- Liste d'affichage des tâches -->
     <ul id="listeTaches"></ul>
 
+    <!-- Boutons d'actions groupés -->
     <div class="actions-bottom">
       <button class="btn-todo" id="toutSupprimer">Tout effacer</button>
       <button class="btn-todo" id="btnExporter">Exporter JSON</button>
     </div>
   </section>
 
+  <!-- SECTION PORTFOLIO PROJETS -->
+  <section class="projets-section">
+    <h2>Mes Réalisations</h2>
+    <p class="projets-subtitle">Découvrez les applications et outils web que je développe au cours de ma formation.</p>
+
+    <div class="projets-grid">
+      
+      <!-- Projet 1 : La To-Do List -->
+      <div class="projet-card">
+        <div>
+          <div class="projet-title">📝 Application To-Do List</div>
+          <p class="projet-desc">
+            Une application de gestion des tâches quotidienne intégrant des filtres par catégorie, une barre de progression en temps réel et une sauvegarde automatique.
+          </p>
+          <div class="projet-techs">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">LocalStorage</span>
+          </div>
+        </div>
+        <a href="#" class="projet-link">Projet Actuel</a>
+      </div>
+
+      <!-- Projet 2 : Emplacement futur projet -->
+      <div class="projet-card">
+        <div>
+          <div class="projet-title">🚀 Prochain Projet Pro</div>
+          <p class="projet-desc">
+            Une future application web dynamique ou un projet d'étude en cours de conception pour valider mes compétences en intégration et développement.
+          </p>
+          <div class="projet-techs">
+            <span class="tech-tag">En cours...</span>
+          </div>
+        </div>
+        <a href="#" class="projet-link" style="opacity: 0.5; pointer-events: none;">Bientôt disponible</a>
+      </div>
+
+    </div>
+  </section>
+    <!-- 5. SCRIPTS JAVASCRIPT LOGIQUES -->
   <script>
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
@@ -551,8 +653,6 @@
       
       majProgression();
       sauvegarderTaches();
-      
-      // Réinitialise le filtre sur "Toutes" après ajout pour voir la tâche
       document.querySelector('.btn-filtre[data-filtre="toutes"]').click();
     });
 
@@ -562,7 +662,6 @@
       localStorage.removeItem('djp_taches');
     });
 
-    // Logique des Filtres de catégories
     boutonsFiltres.forEach(btn => {
       btn.addEventListener('click', () => {
         boutonsFiltres.forEach(b => b.classList.remove('actif'));
@@ -580,7 +679,6 @@
       });
     });
 
-    // Logique Export JSON fonctionnelle
     btnExporter.addEventListener('click', () => {
       const tachesStockees = localStorage.getItem('djp_taches') || '[]';
       const blob = new Blob([tachesStockees], { type: 'application/json' });
