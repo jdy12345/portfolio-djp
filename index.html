@@ -8,6 +8,7 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   
   <style>
+    /* 1. VARIABLES DE COULEURS EN MODE CLAIR / SOMBRE */
     :root {
       --bg-gradient: linear-gradient(135deg, #ff7e5f, #2a9d8f);
       --card-bg: rgba(255,255,255,0.15);
@@ -23,6 +24,7 @@
       --input-bg: rgba(0, 0, 0, 0.3);
     }
 
+    /* 2. REINITIALISATION ET STYLES GENERAUX */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -39,6 +41,7 @@
       transition: all 0.3s ease;
     }
 
+    /* 3. SECTION PRESENTATION PRINCIPALE (HERO) */
     .hero-container {
       max-width: 650px;
       margin: 0 auto;
@@ -138,6 +141,7 @@
       justify-content: center;
     }
 
+    /* 4. DESIGN COMPOSANT TO-DO LIST */
     .todo-section {
       margin-top: 40px;
       padding: 30px 25px;
@@ -394,8 +398,10 @@
 </head>
 <body>
 
+  <!-- Bouton Thème Jour/Nuit -->
   <button class="theme-toggle" id="themeToggle">🌙</button>
 
+  <!-- BLOC D'ACCUEIL (HERO) -->
   <div class="hero-container">
     <h1>Jean-Yves Djiguemde</h1>
     <h2>Développeur Web & Mobile</h2>
@@ -416,6 +422,7 @@
     </div>
   </div>
 
+  <!-- BLOC SECTION : QUI SUIS-JE -->
   <section style="margin-top: 20px; padding: 30px 25px; background: var(--card-bg); border-radius: 15px; max-width: 600px; margin-left: auto; margin-right: auto; text-align: left; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);">
     <h2 style="margin-bottom: 15px; font-weight: 700;">Qui suis-je ?</h2>
     <p style="font-size: 15px; line-height: 1.7; margin-bottom: 0;">
@@ -424,10 +431,12 @@
     </p>
   </section>
 
+  <!-- BLOC SECTION : APPLICATION TO-DO LIST -->
   <section class="todo-section">
     <h2>Ma To-Do List</h2>
     <p class="todo-subtitle">Suivez l'avancement de vos tâches quotidiennes en temps réel.</p>
 
+    <!-- Zone de Statistiques -->
     <div class="stats-container">
       <div class="stats-texte">Progression des tâches</div>
       <div class="progress-bar-bg">
@@ -435,6 +444,7 @@
       </div>
     </div>
 
+    <!-- Filtres Applicatifs -->
     <div class="filtres-container">
       <button class="btn-filtre actif" data-filtre="toutes">Toutes</button>
       <button class="btn-filtre" data-filtre="perso">Perso</button>
@@ -442,6 +452,7 @@
       <button class="btn-filtre" data-filtre="ifsm">IFSM</button>
     </div>
 
+    <!-- Saisie Nouvelle Tâche -->
     <div class="input-section">
       <input type="text" id="champTache" placeholder="Ajouter une nouvelle tâche...">
       <select id="categorieTache">
@@ -453,21 +464,26 @@
       <button class="btn-todo btn-ajouter" id="btnAjouter">Ajouter</button>
     </div>
 
+    <!-- Liste d'affichage des tâches -->
     <ul id="listeTaches"></ul>
 
+    <!-- Boutons d'actions groupés -->
     <div class="actions-bottom">
       <button class="btn-todo" id="toutSupprimer">Tout effacer</button>
       <button class="btn-todo" id="btnExporter">Exporter JSON</button>
     </div>
   </section>
 
+  <!-- SCRIPTS JAVASCRIPT LOGIQUES -->
   <script>
+    // Module de bascule Mode Sombre
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
       document.body.classList.toggle('dark-mode');
       themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
     });
 
+    // Liaison Éléments du DOM
     const champTache = document.getElementById('champTache');
     const categorieTache = document.getElementById('categorieTache');
     const dateTache = document.getElementById('dateTache');
@@ -476,6 +492,33 @@
     const barreProgression = document.getElementById('barreProgression');
     const toutSupprimer = document.getElementById('toutSupprimer');
 
+    // Sauvegarder les tâches dans le localStorage
+    function sauvegarderTaches() {
+      const taches = [];
+      listeTaches.querySelectorAll('li').forEach(li => {
+        taches.push({
+          texte: li.querySelector('.tache-texte').textContent,
+          categorie: li.querySelector('.tache-categorie').textContent,
+          date: li.querySelector('.tache-date').textContent,
+          finie: li.classList.contains('finie')
+        });
+      });
+      localStorage.setItem('djp_taches', JSON.stringify(taches));
+    }
+
+    // Charger les tâches depuis le localStorage au démarrage
+    function chargerTaches() {
+      const tachesStockees = localStorage.getItem('djp_taches');
+      if (!tachesStockees) return;
+
+      const taches = JSON.parse(tachesStockees);
+      taches.forEach(tache => {
+        creerElementTache(tache.texte, tache.categorie, tache.date, tache.finie);
+      });
+      majProgression();
+    }
+
+    // Calcul de la barre d'avancement
     function majProgression() {
       const total = listeTaches.children.length;
       const finies = listeTaches.querySelectorAll('.finie').length;
@@ -483,15 +526,12 @@
       barreProgression.style.width = pourcentage + '%';
     }
 
-    btnAjouter.addEventListener('click', () => {
-      const texte = champTache.value.trim();
-      const cat = categorieTache.value;
-      const dateVal = dateTache.value ? `📅 ${dateTache.value}` : '📅 Pas de date';
-
-      if (!texte) return alert('Veuillez renseigner le libellé de votre tâche.');
-
+    // Fonction unique pour créer visuellement une tâche dans le DOM
+    function creerElementTache(texte, cat, dateVal, estFinie = false) {
       const li = document.createElement('li');
       li.className = `cat-${cat}`;
+      if (estFinie) li.classList.add('finie');
+      
       li.innerHTML = `
         <div class="tache-info">
           <span class="tache-categorie">${cat}</span>
@@ -501,26 +541,48 @@
         <button class="btn-supprimer">Supprimer</button>
       `;
 
+      // Clic pour cocher/décocher l'état de la tâche
       li.querySelector('.tache-info').addEventListener('click', () => {
         li.classList.toggle('finie');
         majProgression();
+        sauvegarderTaches();
       });
 
+      // Suppression de l'élément ciblé
       li.querySelector('.btn-supprimer').addEventListener('click', (e) => {
         e.stopPropagation();
         li.remove();
         majProgression();
+        sauvegarderTaches();
       });
 
       listeTaches.appendChild(li);
+    }
+
+    // Écouteur sur le bouton Ajouter
+    btnAjouter.addEventListener('click', () => {
+      const texte = champTache.value.trim();
+      const cat = categorieTache.value;
+      const dateVal = dateTache.value ? `📅 ${dateTache.value}` : '📅 Pas de date';
+
+      if (!texte) return alert('Veuillez renseigner le libellé de votre tâche.');
+
+      creerElementTache(texte, cat, dateVal);
       champTache.value = '';
+      
       majProgression();
+      sauvegarderTaches();
     });
 
+    // Remise à zéro complète de la liste
     toutSupprimer.addEventListener('click', () => {
       listeTaches.innerHTML = '';
       majProgression();
+      localStorage.removeItem('djp_taches');
     });
+
+    // Lancement automatique au chargement de la page
+    chargerTaches();
   </script>
 </body>
 </html>
