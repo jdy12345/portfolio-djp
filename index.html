@@ -8,7 +8,6 @@
   <link rel="icon" type="image/png" href="/favicon.png">
   
   <style>
-    /* 1. VARIABLES DE COULEURS EN MODE CLAIR / SOMBRE */
     :root {
       --bg-gradient: linear-gradient(135deg, #ff7e5f, #2a9d8f);
       --card-bg: rgba(255,255,255,0.15);
@@ -24,7 +23,6 @@
       --input-bg: rgba(0, 0, 0, 0.3);
     }
 
-    /* 2. REINITIALISATION ET STYLES GENERAUX */
     * {
       box-sizing: border-box;
       margin: 0;
@@ -41,7 +39,6 @@
       transition: all 0.3s ease;
     }
 
-    /* 3. SECTION PRESENTATION PRINCIPALE (HERO) */
     .hero-container {
       max-width: 650px;
       margin: 0 auto;
@@ -140,6 +137,261 @@
       align-items: center;
       justify-content: center;
     }
+
+    .todo-section {
+      margin-top: 40px;
+      padding: 30px 25px;
+      background: var(--card-bg);
+      border-radius: 15px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .todo-section h2 {
+      margin-bottom: 5px;
+      font-weight: 700;
+    }
+
+    .todo-subtitle {
+      font-size: 14px !important;
+      opacity: 0.7;
+      margin-bottom: 25px !important;
+      text-align: left;
+    }
+
+    .input-section {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    #champTache, #categorieTache, #dateTache {
+      padding: 12px;
+      font-size: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 8px;
+      background: var(--input-bg);
+      color: var(--text-color);
+      outline: none;
+      transition: all 0.2s;
+    }
+
+    #champTache:focus, #categorieTache:focus, #dateTache:focus {
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
+    }
+
+    #champTache {
+      flex: 2;
+      min-width: 200px;
+    }
+
+    #categorieTache, #dateTache {
+      flex: 1;
+      min-width: 120px;
+    }
+
+    #champTache::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-todo {
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-ajouter {
+      background: white;
+      color: #2a9d8f;
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .btn-ajouter:hover {
+      background: rgba(255,255,255,0.9);
+      transform: translateY(-1px);
+    }
+
+    #toutSupprimer {
+      background: rgba(255, 68, 68, 0.15);
+      color: #ff4444;
+      border: 1px solid rgba(255, 68, 68, 0.3);
+      width: 48%;
+    }
+
+    #toutSupprimer:hover {
+      background: rgba(255, 68, 68, 0.3);
+    }
+
+    #btnExporter {
+      background: rgba(52, 152, 219, 0.15);
+      color: #3498db;
+      border: 1px solid rgba(52, 152, 219, 0.3);
+      width: 48%;
+    }
+
+    #btnExporter:hover {
+      background: rgba(52, 152, 219, 0.3);
+    }
+
+    .actions-bottom {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .stats-container {
+      background: rgba(0,0,0,0.1);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .stats-texte {
+      font-size: 13px;
+      margin-bottom: 8px;
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(to right, #25D366, #2a9d8f);
+      width: 0%;
+      transition: width 0.4s ease;
+      border-radius: 4px;
+    }
+
+    .filtres-container {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-filtre {
+      flex: 1;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 20px;
+      cursor: pointer;
+      background: rgba(255,255,255,0.05);
+      color: var(--text-color);
+      transition: all 0.2s;
+    }
+
+    .btn-filtre:hover {
+      background: rgba(255,255,255,0.15);
+    }
+
+    .btn-filtre.actif {
+      background: white;
+      color: #1e293b;
+      border-color: white;
+    }
+
+    #listeTaches {
+      list-style: none;
+      padding: 0;
+      min-height: 20px;
+    }
+
+    #listeTaches li {
+      background: rgba(255,255,255,0.05);
+      padding: 14px 18px;
+      margin: 10px 0;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s ease;
+      border-left: 4px solid transparent;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    #listeTaches li:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateX(2px);
+    }
+
+    .tache-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .tache-categorie {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      width: fit-content;
+      padding: 2px 8px;
+      border-radius: 4px;
+      color: white;
+      margin-bottom: 2px;
+    }
+
+    .finie {
+      text-decoration: line-through;
+      opacity: 0.5 !important;
+    }
+
+    .cat-perso { border-left: 4px solid #a855f7 !important; }
+    .cat-perso .tache-categorie { background: #a855f7; }
+    
+    .cat-boulot { border-left: 4px solid #3b82f6 !important; }
+    .cat-boulot .tache-categorie { background: #3b82f6; }
+    
+    .cat-ifsm { border-left: 4px solid #f97316 !important; }
+    .cat-ifsm .tache-categorie { background: #f97316; }
+
+    .tache-date {
+      font-size: 11px;
+      opacity: 0.6;
+      margin-top: 2px;
+    }
+
+    .btn-supprimer {
+      background: rgba(255, 68, 68, 0.1);
+      color: #ff4444;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid rgba(255, 68, 68, 0.2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-supprimer:hover {
+      background: #ff4444;
+      color: white;
+    }
+  </style>
+</head>
 <body>
 
   <button class="theme-toggle" id="themeToggle">🌙</button>
@@ -209,41 +461,6 @@
     </div>
   </section>
 
-  <section class="projets-section">
-    <h2>Mes Réalisations</h2>
-    <p class="projets-subtitle">Découvrez les applications et outils web que je développe au cours de ma formation.</p>
-
-    <div class="projets-grid">
-      <div class="projet-card">
-        <div>
-          <div class="projet-title">📝 Application To-Do List</div>
-          <p class="projet-desc">
-            Une application de gestion des tâches quotidienne intégrant des filtres par catégorie, une barre de progression en temps réel et une sauvegarde automatique.
-          </p>
-          <div class="projet-techs">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">LocalStorage</span>
-          </div>
-        </div>
-        <a href="#" class="projet-link">Projet Actuel</a>
-      </div>
-
-      <div class="projet-card">
-        <div>
-          <div class="projet-title">🚀 Prochain Projet Pro</div>
-          <p class="projet-desc">
-            Une future application web dynamique ou un projet d'étude en cours de conception pour valider mes compétences en intégration et développement.
-          </p>
-          <div class="projet-techs">
-            <span class="tech-tag">En cours...</span>
-          </div>
-        </div>
-        <a href="#" class="projet-link" style="opacity: 0.5; pointer-events: none;">Bientôt disponible</a>
-      </div>
-    </div>
-  </section>
   <script>
     const themeToggle = document.getElementById('themeToggle');
     themeToggle.addEventListener('click', () => {
@@ -334,6 +551,8 @@
       
       majProgression();
       sauvegarderTaches();
+      
+      // Réinitialise le filtre sur "Toutes" après ajout pour voir la tâche
       document.querySelector('.btn-filtre[data-filtre="toutes"]').click();
     });
 
@@ -343,6 +562,7 @@
       localStorage.removeItem('djp_taches');
     });
 
+    // Logique des Filtres de catégories
     boutonsFiltres.forEach(btn => {
       btn.addEventListener('click', () => {
         boutonsFiltres.forEach(b => b.classList.remove('actif'));
@@ -360,6 +580,7 @@
       });
     });
 
+    // Logique Export JSON fonctionnelle
     btnExporter.addEventListener('click', () => {
       const tachesStockees = localStorage.getItem('djp_taches') || '[]';
       const blob = new Blob([tachesStockees], { type: 'application/json' });
